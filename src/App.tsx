@@ -1,18 +1,32 @@
 import { useState } from 'react'
-import logo from './logo.svg'
 import './App.css'
-import ShowInfo from './conponents/ShowInfo'
-import type { Product } from './types/product'
+import type { Product } from './types/product';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import HomePage from './page/homePage';
+import ClientLayout from './layouts/ClientLayout';
+import AdminLayout from './layouts/AdminLayout';
+import ProductPage from './page/ProductPage';
+import ProductDetail from './page/ProductDetail';
+import DashBoard from './admin/DashBoard';
 function App() {
-  const [count, setCount] = useState<number>(0)
-  const [info, setInfo] = useState<Product>({
-    name: 'Hung',
-    age: 22,
-  })
+
   return (
     <div className="App">
-      <button onClick={() => setCount(count - 1)}>-</button>{count} <button onClick={() => setCount(count + 1)}>+</button>
-      <ShowInfo person={info} />
+      <main>
+        <Routes>
+          <Route path='/' element={<ClientLayout />}>
+            <Route index element={<HomePage />} />
+            <Route path='product'  >
+              <Route index element={<ProductPage />} />
+              <Route path=':id' element={<ProductDetail />} />
+            </Route>
+          </Route>
+          <Route path='admin' element={<AdminLayout />}>
+            <Route index element={<Navigate to="/admin/dashboard" />} />
+            <Route path='dashboard' element={<DashBoard />} />
+          </Route>
+        </Routes>
+      </main>
     </div>
   )
 }
