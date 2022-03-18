@@ -10,7 +10,9 @@ const AdminLayout = (props: Props) => {
 
             <div className="col">
                 <div className="col-2">
-                    <aside>navbar</aside>
+                    <aside>navbar
+                        <div><a href="/admin/product/add">Thêm sản phẩm</a></div>
+                    </aside>
                 </div>
                 <div className="col-10">{<Outlet />}</div>
             </div>
