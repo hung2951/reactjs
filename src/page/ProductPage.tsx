@@ -13,9 +13,10 @@ const ProductPage = (props: ProductProps) => {
             <table>
                 <tbody>
                     {props.products.map((item, index) => {
+                        const path = '/product/' + item._id
                         return <tr>
                             <td>{index + 1}</td>
-                            <td><Link to="/product/">{item.name}</Link></td>
+                            <td><Link to={path} key={item._id}>{item.name}</Link></td>
                             <td>{item.price}</td>
                             <td><button>Remove</button></td>
                         </tr>
